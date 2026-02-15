@@ -1,0 +1,24 @@
+.auth-container {
+  height: 100vh;
+  background: linear-gradient(to bottom right, #1abc9c, #16a085);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-box {
+  background: transparent;
+  text-align: center;
+  color: white;
+  width: 300px;
+}
+
+.auth-box h1 {
+  margin-bottom: 30px;
+}
+
+.auth-box span {
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}

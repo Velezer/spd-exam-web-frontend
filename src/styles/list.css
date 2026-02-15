@@ -1,0 +1,27 @@
+.list-container {
+  padding: 20px;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card {
+  display: flex;
+  gap: 15px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card img {
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 10px;
+}

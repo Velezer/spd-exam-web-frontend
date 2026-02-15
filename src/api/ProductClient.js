@@ -25,8 +25,11 @@ const ProductClient = {
         );
     },
 
-    getProducts() {
-        return this.axiosInstance.get("/");
+    getProducts(limit, skip) {
+        const params = {};
+        if (limit) params.limit = limit;
+        if (skip) params.skip = skip;
+        return this.axiosInstance.get("/", { params });
     },
 
     getProductById(id) {
