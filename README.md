@@ -16,7 +16,7 @@
 3. **Environment Setup:**
    Create a `.env` file in the root directory and add your environment variables:
    ```env
-   VITE_API_BASE_URL=http://localhost:3001/api
+   VITE_API_BASE_URL=https://spd-exam-backend-2af53d7fefb5.herokuapp.com
    ```
 
 4. **Start the development server:**
