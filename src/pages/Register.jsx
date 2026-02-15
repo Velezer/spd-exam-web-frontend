@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import AuthClient from "../api/AuthClient";
 import { notify } from "../utils/notify";
+import logo from "../assets/logo.png";
 import "../styles/auth.css";
 
 function Register({ onRegister }) {
@@ -75,6 +76,7 @@ function Register({ onRegister }) {
   return (
     <div className="auth-container">
       <div className="auth-box">
+        <img src={logo} alt="Logo" className="auth-logo" />
         <h1>DIY Tutorial</h1>
 
         <InputField
