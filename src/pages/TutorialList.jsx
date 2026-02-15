@@ -1,34 +1,51 @@
+import { useState, useEffect } from "react";
 import TutorialCard from "../components/TutorialCard";
+import ProductClient from "../api/ProductClient";
+import { notify } from "../utils/notify";
 import "../styles/list.css";
 
 function TutorialList() {
-  const tutorials = [
-    {
-      id: 1,
-      title: "Cara Panen Tomat",
-      image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800",
-    },
-    {
-      id: 2,
-      title: "Cara Tanam Tomat",
-      image: "https://source.unsplash.com/400x300/?tomato,plant",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    ProductClient.init();
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const response = await ProductClient.getProducts();
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      notify(error.response?.data?.error || "Failed to load products", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="list-container">
       <h2>Tutorial</h2>
 
-      <div className="card-list">
-        {tutorials.map((item) => (
-          <TutorialCard
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            image={item.image}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <p>Loading products...</p>
+      ) : products.length === 0 ? (
+        <p>No products available</p>
+      ) : (
+        <div className="card-list">
+          {products.map((product) => (
+            <TutorialCard
+              key={product._id}
+              id={product._id}
+              title={product.name}
+              image={product.imgUrl || "https://via.placeholder.com/400x300"}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
