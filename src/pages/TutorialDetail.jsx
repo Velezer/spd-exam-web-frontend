@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import ProductClient from "../api/ProductClient";
 import { notify } from "../utils/notify";
 import { isYouTubeUrl, getYouTubeEmbedUrl } from "../utils/youtube";
+import { formatRelativeTime } from "../utils/dateFormatter";
 import "../styles/detail.css";
 
 function TutorialDetail() {
@@ -54,6 +55,10 @@ function TutorialDetail() {
           </video>
         )}
 
+        <div className="description-box">
+          <p>{formatRelativeTime(product.createdAt)}</p>
+        </div>
+         
         <div className="description-box">
           <h4>Deskripsi</h4>
           <p>{product.description}</p>

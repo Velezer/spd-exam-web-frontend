@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { formatRelativeTime } from "../utils/dateFormatter";
 import "../styles/list.css";
 
-function TutorialCard({ id, title, image }) {
+function TutorialCard({ id, title, image, createdAt }) {
   const navigate = useNavigate();
 
   return (
@@ -9,7 +10,7 @@ function TutorialCard({ id, title, image }) {
       <img src={image} alt={title} />
       <div className="card-info">
         <h4>{title}</h4>
-        <p>1 jam yang lalu</p>
+        <p>{formatRelativeTime(createdAt)}</p>
       </div>
     </div>
   );

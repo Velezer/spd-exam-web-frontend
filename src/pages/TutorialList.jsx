@@ -28,8 +28,6 @@ function TutorialList() {
 
   return (
     <div className="list-container">
-      <h2>Tutorial</h2>
-
       {loading ? (
         <p>Loading products...</p>
       ) : products.length === 0 ? (
@@ -42,6 +40,7 @@ function TutorialList() {
               id={product._id}
               title={product.name}
               image={product.imgUrl || "https://via.placeholder.com/400x300"}
+              createdAt={product.createdAt}
             />
           ))}
         </div>

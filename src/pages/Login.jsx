@@ -98,7 +98,12 @@ function Login({ onLogin }) {
 
         <p>
           Belum punya akun?{" "}
-          <span onClick={() => navigate("/register")}>Register</span>
+          <span>
+            <Button
+              text={"REGISTER"}
+              onClick={() => navigate("/register")}
+            />
+          </span>
         </p>
       </div>
     </div>

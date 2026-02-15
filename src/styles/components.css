@@ -15,6 +15,23 @@
   border-radius: 20px;
   border: none;
   outline: none;
+  background-color: white !important;
+  color: #333 !important;
+}
+
+.input-group input:focus,
+.input-group input:active {
+  background-color: white !important;
+  color: #333 !important;
+}
+
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:focus,
+.input-group input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #333 !important;
+  background-color: white !important;
+  color: #333 !important;
 }
 
 .primary-btn {
