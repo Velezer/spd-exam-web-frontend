@@ -15,7 +15,7 @@ function Login({ onLogin }) {
 
   const getErrorMessage = (error) => {
     if (!error.response) {
-      return "Tidak bisa terhubung ke server. Periksa koneksi Anda.";
+      return "something wrong";
     }
 
     const status = error.response.status;
@@ -23,31 +23,31 @@ function Login({ onLogin }) {
 
     // 4xx Client Errors
     if (status === 400) {
-      return "Email atau password tidak valid.";
+      return "bad request";
     }
     if (status === 401) {
-      return "Email atau password salah. Coba lagi.";
+      return "unauthorized";
     }
     if (status === 404) {
-      return "Akun tidak ditemukan. Daftar terlebih dahulu.";
+      return "not found";
     }
 
     // 5xx Server Errors
     if (status >= 500) {
-      return "Server sedang mengalami gangguan. Coba lagi nanti.";
+      return "internal server error";
     }
 
-    return data.error || "Login gagal. Coba lagi.";
+    return data.error || "login failed";
   };
 
   const handleLogin = async () => {
     if (!email || !password) {
-      notify("Email dan password harus diisi", "error");
+      notify("email & password required", "error");
       return;
     }
 
     if (!email.includes("@")) {
-      notify("Email tidak valid", "error");
+      notify("email not valid", "error");
       return;
     }
 
@@ -60,7 +60,7 @@ function Login({ onLogin }) {
       const userData = { ...user, token };
       onLogin(userData);
 
-      notify("Login berhasil!", "success");
+      notify("login success!", "success");
       navigate("/");
     } catch (error) {
       console.error("Login error:", error);
@@ -80,7 +80,7 @@ function Login({ onLogin }) {
         <InputField
           label="Email"
           type="email"
-          placeholder="email@email.com"
+          placeholder="email@domain.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />

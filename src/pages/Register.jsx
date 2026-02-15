@@ -15,7 +15,7 @@ function Register({ onRegister }) {
 
   const getErrorMessage = (error) => {
     if (!error.response) {
-      return "Tidak bisa terhubung ke server. Periksa koneksi Anda.";
+      return "something wrong";
     }
 
     const status = error.response.status;
@@ -23,33 +23,28 @@ function Register({ onRegister }) {
 
     // 4xx Client Errors
     if (status === 400) {
-      return data.error || "Data yang Anda kirim tidak valid. Periksa kembali.";
+      return data.error || "bad request";
     }
     if (status === 409) {
-      return "Email sudah terdaftar. Gunakan email lain atau login.";
+      return "email already registered";
     }
 
     // 5xx Server Errors
     if (status >= 500) {
-      return "Server sedang mengalami gangguan. Coba lagi nanti.";
+      return "internal server error";
     }
 
-    return data.error || "Registrasi gagal. Coba lagi.";
+    return data.error || "register failed";
   };
 
   const handleRegister = async () => {
     if (!email || !password) {
-      notify("Semua field harus diisi", "error");
+      notify("email & password required", "error");
       return;
     }
 
     if (!email.includes("@")) {
-      notify("Email tidak valid", "error");
-      return;
-    }
-
-    if (password.length < 6) {
-      notify("Password minimal 6 karakter", "error");
+      notify("email not valid", "error");
       return;
     }
 
@@ -62,7 +57,7 @@ function Register({ onRegister }) {
       const userData = { ...user, token };
       onRegister(userData);
 
-      notify("Registrasi berhasil!", "success");
+      notify("Register Success!", "success");
       navigate("/");
     } catch (error) {
       console.error("Register error:", error);
@@ -82,14 +77,14 @@ function Register({ onRegister }) {
         <InputField
           label="Email"
           type="email"
-          placeholder="email@email.com"
+          placeholder="email@domain.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <InputField
           label="Password"
           type="password"
-          placeholder="Minimal 6 karakter"
+          placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

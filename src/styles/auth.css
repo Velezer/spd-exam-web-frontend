@@ -1,5 +1,4 @@
 .auth-container {
-  height: 100vh;
   background: linear-gradient(to bottom right, #1abc9c, #16a085);
   display: flex;
   justify-content: center;
